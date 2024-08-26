@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Homepage</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #1a1a1a;
+            color: #ffffff;
+        }
+        .navbar {
+            display: flex;
+            justify-content: flex-end;
+            background-color: #4e0072;
+            padding: 1rem;
+        }
+        .navbar a {
+            color: #ffffff;
+            text-decoration: none;
+            margin-left: 1rem;
+        }
+        .search-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80vh;
+        }
+        .search-box {
+            padding: 1rem;
+            border: none;
+            border-radius: 5px;
+            width: 300px;
+            font-size: 1rem;
+        }
+        .search-box:focus {
+            outline: none;
+            box-shadow: 0 0 5px #800080;
+        }
+        .search-button {
+            padding: 1rem;
+            border: none;
+            border-radius: 5px;
+            background-color: #800080;
+            color: #ffffff;
+            font-size: 1rem;
+            margin-left: 1rem;
+            cursor: pointer;
+        }
+        .search-button:hover {
+            background-color: #4e0072;
+        }
+    </style>
+    <script>
+        function search() {
+            const baseUrl = "{{ base_url }}";
+            const searchText = document.querySelector('.search-box').value;
+            location.assign(baseUrl.concat(searchText));
+        }
+    </script>
+</head>
+<body>
+    <div class="navbar">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+    </div>
+    <div class="search-container">
+        <input type="text" class="search-box" placeholder="Search...">
+        <button class="search-button" onclick="search()">Search</button>
+    </div>
+</body>
+</html>

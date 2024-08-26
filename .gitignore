@@ -1,1 +1,4 @@
 apikey.txt
+.env
+.DS_Store
+*.pyc
