@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Purple and Dark Grey Theme</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            scroll-snap-type: x mandatory;
+            overflow-x: scroll;
+        }
+        .box {
+            min-width: 100vw;
+            height: 100vh;
+            scroll-snap-align: start;
+            display: flex;
+            color: white;
+            font-size: 2em;
+        }
+        .box {
+            background-color: #4B0082; /* Purple */
+        }
+        .box2 {
+            background-color: #2F4F4F; /* Dark Grey */
+        }
+        .left {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .left img {
+            width: 300px; /* Size of an album cover */
+            height: 300px;
+            object-fit: cover;
+        }
+        .right {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 20px;
+        }
+        .header {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        .subheader {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+        .body-text {
+            font-size: 1em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        {% for item in items | reverse %}
+        <div class="box">
+            <div class="left">
+                <img src="{{ item.images[0].url }}" alt="Album Cover">
+            </div>
+            <div class="right">
+                <div class="header">{{ item.name }}</div>
+                <div class="subheader">{{ item.release_date }}</div>
+                <div class="body-text">AI Generated text here</div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

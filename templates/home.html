@@ -57,7 +57,8 @@
         function search() {
             const baseUrl = "{{ base_url }}";
             const searchText = document.querySelector('.search-box').value;
-            location.assign(baseUrl.concat(searchText));
+            urlSplits = searchText.split('/');
+            location.assign(baseUrl.concat(urlSplits[urlSplits.length - 1]));
         }
     </script>
 </head>
