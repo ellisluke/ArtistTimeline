@@ -18,6 +18,7 @@
             display: flex;
             scroll-snap-type: x mandatory;
             overflow-x: scroll;
+            position: relative;
         }
         .box {
             min-width: 100vw;
@@ -26,9 +27,11 @@
             display: flex;
             color: white;
             font-size: 2em;
+            position: relative;
         }
         .box {
-            background-color: #4B0082; /* Purple */
+            background: rgb(238,174,202);
+            background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
         }
         .box2 {
             background-color: #2F4F4F; /* Dark Grey */
@@ -62,10 +65,83 @@
         .body-text {
             font-size: 1em;
         }
+        .timeline {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background-color: white;
+        }
+        .tick {
+            position: absolute;
+            bottom: 20px;
+            width: 5px;
+            height: 50px;
+            left: 24%;
+            background-color: white;
+        }
+        .date {
+            position: absolute;
+            bottom: 75px; /* Adjust this value to position the date above the tick */
+            left: 24%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 1em;
+        }
+        .artist-intro {
+            min-width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: rgb(238,174,202);
+            background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+            color: white;
+            font-size: 2em;
+            scroll-snap-align: start;
+        }
+        .artist-intro img {
+            width: 400px; /* Size of the artist image */
+            height: 400px;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+        .artist-header {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        .artist-subheader {
+            font-size: 1.5em;
+        }
+        .timeline-start {
+            position: absolute;
+            bottom: 20px;
+            right: 0;
+            width: 50%;
+            height: 5px;
+            background-color: white;
+        }
+        .tick-start {
+            position: absolute;
+            bottom: 10px;
+            width: 5px;
+            height: 75px;
+            left: 50%;
+            background-color: white;
+        }
     </style>
 </head>
 <body>
     <div class="container">
+        <div class="artist-intro">
+            <img src="{{ images[0].url }}" alt="Artist Image">
+            <div class="artist-header">{{ name }}</div>
+            <div class="artist-subheader">Date of Birth</div>
+            <div class="timeline-start"></div>
+            <div class="tick-start"></div>
+        </div>
         {% for item in items | reverse %}
         <div class="box">
             <div class="left">
@@ -73,9 +149,12 @@
             </div>
             <div class="right">
                 <div class="header">{{ item.name }}</div>
-                <div class="subheader">{{ item.release_date }}</div>
+                <div class="subheader">{{ item.total_tracks }} tracks</div>
                 <div class="body-text">AI Generated text here</div>
             </div>
+            <div class="tick"></div>
+            <div class="timeline"></div>
+            <div class="date">{{ item.release_date }}</div>
         </div>
         {% endfor %}
     </div>

@@ -7,6 +7,7 @@ from fastapi.templating import Jinja2Templates
 
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
+import json
 
 load_dotenv()
 GEMINI_KEY = os.getenv('GEMINI_API_KEY', "No value found for Gemini API key, please make sure to update your env file")
@@ -28,14 +29,28 @@ async def root(request: Request):
 # https://open.spotify.com/artist/6uIst176jhzooPMetg2rtH?si=ahyzpHfBQYq1hj1gzH_Z-Q
 @app.get("/artist/{url}")
 def root(request: Request, url):
-    results = spotify.artist_albums(url, album_type="album")
+    album_results = spotify.artist_albums(url, album_type="album", limit=50)
+    artist_results = spotify.artist(url)
+    mergedDict = {**artist_results, **album_results}
+    # return mergedDict
     return templates.TemplateResponse(
-            request=request, name="timeline.html", context=results
+            request=request, name="timeline.html", context=mergedDict
     )
 
-@app.get("/test")
-async def root(request: Request):
-    return templates.TemplateResponse(
-        request=request, name="timeline.html", context={}
-    )
+@app.get("/test/{url}")
+async def root(request: Request, url):
+    album_results = spotify.artist_albums(url, album_type="album", limit=50)
+    artist_results = spotify.artist(url)
+    mergedDict = {**artist_results, **album_results}
+    return mergedDict
 
+@app.get("/json-test/{url}")
+def root(request: Request, url):
+    album_results = spotify.artist_albums(url, album_type="album", limit=50)
+    artist_results = spotify.artist(url)
+
+    mergedDict = {**artist_results, **album_results}
+    # return mergedDict
+    return templates.TemplateResponse(
+            request=request, name="test.html", context=mergedDict
+    )
