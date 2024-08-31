@@ -34,4 +34,5 @@ SPOTIFY_CLIENT_SECRET=YOUR_SPOTIFY_CLIENT_SECRET_HERE
 - Add basic stats (Spotify monthly listeners, Spotify followers, etc.) to the first page.
 - More scrolling support for non-trackpad users.
 - Perhaps implement arrow buttons on the side of the page to move to the next or previous step on the timeline.
+- Add an "About" page.
 
