@@ -10,7 +10,10 @@
             padding: 0;
             height: 100%;
             overflow: hidden;
-            font-family: Arial, sans-serif;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            background: rgb(238,174,202);
+            background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+            background-attachment: fixed; /* This makes the background static */
         }
         .container {
             height: 100vh;
@@ -28,13 +31,6 @@
             color: white;
             font-size: 2em;
             position: relative;
-        }
-        .box {
-            background: rgb(238,174,202);
-            background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
-        }
-        .box2 {
-            background-color: #2F4F4F; /* Dark Grey */
         }
         .left {
             flex: 1;
@@ -55,15 +51,16 @@
             padding: 20px;
         }
         .header {
-            font-size: 2em;
+            font-size: 1.3em;
             margin-bottom: 10px;
         }
         .subheader {
-            font-size: 1.5em;
+            font-size: 0.7em;
             margin-bottom: 20px;
         }
         .body-text {
-            font-size: 1em;
+            font-size: 0.6em;
+            width: 80%;
         }
         .timeline {
             position: absolute;
@@ -96,8 +93,6 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            background: rgb(238,174,202);
-            background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
             color: white;
             font-size: 2em;
             scroll-snap-align: start;
@@ -150,7 +145,7 @@
             <div class="right">
                 <div class="header">{{ item.name }}</div>
                 <div class="subheader">{{ item.total_tracks }} tracks</div>
-                <div class="body-text">AI Generated text here</div>
+                <div class="body-text">{{ item.ai_description }}</div>
             </div>
             <div class="tick"></div>
             <div class="timeline"></div>
