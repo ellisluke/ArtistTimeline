@@ -2,11 +2,12 @@
 As part of a 24-hour personal challenge, I built a prototype to visualize any musical artist's release history. This project pulls in data from Spotify and Google's Gemini 1.5 Flash to build a scrollable timeline chronicling the artist's major releases accompanied with descriptions of the album.
 
 ## Video Demo
-[![Video Demo of Artist Timeline](https://img.youtube.com/vi/yEMMuYagO4Q/0.jpg)](https://www.youtube.com/watch?v=yEMMuYagO4Q)
+![Image](ArtistTimelineDemo.gif)\
+[Video demo on YouTube here](https://www.youtube.com/watch?v=yEMMuYagO4Q)
 
 ## How to Use
 1. Download the ZIP file or clone the project
-2. Create a .env file with the following format, replacing the values with your own API keys. You can get your **free** [Spofity API Key here](https://developer.spotify.com/dashboard) and your **free** [Gemini API Key here](https://aistudio.google.com/app/u/1/apikey).
+2. Create a .env file in the root directory with the following format, replacing the values with your own API keys. You can get your **free** [Spofity API Key here](https://developer.spotify.com/dashboard) and your **free** [Gemini API Key here](https://aistudio.google.com/app/u/1/apikey).
 ```
 GEMINI_API_KEY=YOUR_GEMINI_KEY_HERE
 SPOTIFY_CLIENT_ID=YOUR_SPOTIFY_CLIENT_ID_HERE
