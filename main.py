@@ -52,7 +52,7 @@ def root(request: Request, url):
     album_results = spotify.artist_albums(url, album_type="album", limit=50)
     artist_results = spotify.artist(url)
     mergedDict = {**artist_results, **album_results}
-    
+
     for album in mergedDict['items']:
         description = getGeminiAlbumDescription(mergedDict['name'], album['name'])
         album['ai_description'] = description
@@ -91,7 +91,7 @@ async def root(request: Request, name, album):
 ### FUNCTIONS
 
 def getGeminiAlbumDescription(artistName: str, albumName: str):
-    response = model.generate_content(f"In 100 words, describe the circumstances in which the album {albumName} by {artistName} was created and released. Do not mention the date or year the album was released, just focus on the artistic circumstances, critical response, and specific awards won if any.")
+    response = model.generate_content(f"In 100 words, describe the circumstances in which the album {albumName} by {artistName} was created and released. Do not mention the date or year the album was released, just focus on the artistic circumstances, critical response, and specific awards won if any. Feel free to talk about RIAA certifications if any accurate data is found on that. Don't say anything about the album cementing or solidifying the artist's status as anything.")
     return response.text
 
 def getWikipedia(name: str):

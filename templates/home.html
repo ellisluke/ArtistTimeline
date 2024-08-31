@@ -3,54 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern Homepage</title>
+    <title>Artist Album Release Timeline</title>
     <style>
         body {
             margin: 0;
             font-family: Arial, sans-serif;
-            background-color: #1a1a1a;
+            background: #ffffff;
             color: #ffffff;
         }
         .navbar {
             display: flex;
             justify-content: flex-end;
-            background-color: #4e0072;
+            background-color: #ffffff;
             padding: 1rem;
         }
         .navbar a {
-            color: #ffffff;
+            color: #000000;
             text-decoration: none;
             margin-left: 1rem;
         }
         .search-container {
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 80vh;
         }
+        .header {
+            padding-top: 5%;
+            padding-bottom: 5%;
+            font-size: 6rem;
+            color: #000000;
+            margin-bottom: 1rem;
+        }
+        .search-box-container {
+            display: flex;
+            align-items: center;
+        }
         .search-box {
             padding: 1rem;
-            border: none;
+            border: 2px solid;
             border-radius: 5px;
             width: 300px;
             font-size: 1rem;
+            border-color: #ffb0ff;
         }
         .search-box:focus {
             outline: none;
-            box-shadow: 0 0 5px #800080;
+            box-shadow: 0 0 5px #ffb0ff;
         }
         .search-button {
             padding: 1rem;
             border: none;
             border-radius: 5px;
-            background-color: #800080;
+            background-color:  #ffb0ff;
             color: #ffffff;
             font-size: 1rem;
             margin-left: 1rem;
             cursor: pointer;
         }
         .search-button:hover {
-            background-color: #4e0072;
+            background-color:  #f259f2;
+        }
+        .search-image {
+            width: 400px; /* width of search box + margin + search button */
+            margin-top: 1rem;
         }
     </style>
     <script>
@@ -64,14 +81,16 @@
 </head>
 <body>
     <div class="navbar">
-        <a href="#home">Home</a>
+        <a href="/">Home</a>
         <a href="#about">About</a>
-        <a href="#services">Services</a>
-        <a href="#contact">Contact</a>
     </div>
     <div class="search-container">
-        <input type="text" class="search-box" placeholder="Search...">
-        <button class="search-button" onclick="search()">Search</button>
+        <div class="header">Artist Timeline.</div>
+        <div class="search-box-container">
+            <input type="text" class="search-box" placeholder="Artist Spotify Link...">
+            <button class="search-button" onclick="search()">Search</button>
+        </div>
+        <img src="/static/CopyLink.gif" alt="Search Image" class="search-image">
     </div>
 </body>
 </html>
