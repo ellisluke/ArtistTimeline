@@ -16,7 +16,7 @@ import google.generativeai as genai
 
 # import wikipedia                                  https://pypi.org/project/wikipedia/
 # wikipedia built in api (just testing for now)     https://api.wikimedia.org/wiki/Getting_started_with_Wikimedia_APIs
-import requests
+# import requests
 
 load_dotenv()
 GEMINI_KEY = os.getenv('GEMINI_API_KEY', "No value found for Gemini API key, please make sure to update your env file")
@@ -35,18 +35,18 @@ spotify = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials(cl
 # Gemini Configuration
 genai.configure(api_key=GEMINI_KEY)
 model = genai.GenerativeModel("gemini-1.5-flash")
-# response = model.generate_content("Write a story about a magic backpack.")
-# print(response.text)
 
 
 ### ROUTES
+
+# Home page route
 @app.get("/")
 async def root(request: Request):
     return templates.TemplateResponse(
         request=request, name="home.html", context={"base_url": base_url}
     )
 
-# https://open.spotify.com/artist/6uIst176jhzooPMetg2rtH?si=ahyzpHfBQYq1hj1gzH_Z-Q
+# Timeline for the artist route
 @app.get("/artist/{url}")
 def root(request: Request, url):
     album_results = spotify.artist_albums(url, album_type="album", limit=50)
@@ -61,6 +61,7 @@ def root(request: Request, url):
             request=request, name="timeline.html", context=mergedDict
     )
 
+# Pure JSON data returned route
 @app.get("/test/{url}")
 async def root(request: Request, url):
     album_results = spotify.artist_albums(url, album_type="album", limit=50)
@@ -72,17 +73,7 @@ async def root(request: Request, url):
 
     return mergedDict
 
-@app.get("/json-test/{url}")
-def root(request: Request, url):
-    album_results = spotify.artist_albums(url, album_type="album", limit=50)
-    artist_results = spotify.artist(url)
-
-    mergedDict = {**artist_results, **album_results}
-    # return mergedDict
-    return templates.TemplateResponse(
-            request=request, name="test.html", context=mergedDict
-    )
-
+# Route for simply testing Gemini response
 @app.get("/genai-test/{name}/{album}")
 async def root(request: Request, name, album):
     description = getGeminiAlbumDescription(name, album)
@@ -94,13 +85,14 @@ def getGeminiAlbumDescription(artistName: str, albumName: str):
     response = model.generate_content(f"In 100 words, describe the circumstances in which the album {albumName} by {artistName} was created and released. Do not mention the date or year the album was released, just focus on the artistic circumstances, critical response, and specific awards won if any. Feel free to talk about RIAA certifications if any accurate data is found on that. Don't say anything about the album cementing or solidifying the artist's status as anything.")
     return response.text
 
-def getWikipedia(name: str):
-    url = 'https://api.wikimedia.org/feed/v1/wikipedia/en/featured/' + date
-    headers = {
-    'Authorization': 'Bearer YOUR_ACCESS_TOKEN',
-    'User-Agent': 'YOUR_APP_NAME (YOUR_EMAIL_OR_CONTACT_PAGE)'
-    }
-    response = requests.get(url, headers=headers)
-    data = response.json()
-    print(data)
-    return data
+# From testing Wikipedia API for birthdays
+# def getWikipedia(name: str):
+#     url = 'https://api.wikimedia.org/feed/v1/wikipedia/en/featured/' + date
+#     headers = {
+#     'Authorization': 'Bearer YOUR_ACCESS_TOKEN',
+#     'User-Agent': 'YOUR_APP_NAME (YOUR_EMAIL_OR_CONTACT_PAGE)'
+#     }
+#     response = requests.get(url, headers=headers)
+#     data = response.json()
+#     print(data)
+#     return data
